@@ -1,0 +1,89 @@
+{
+  "name": "fin-system",
+  "version": "0.1.0",
+  "description": "FIN: A high-fidelity instrument for navigation of stochastic financial environments",
+  "author": "Antigravity",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "build:fast": "vite build",
+    "preview": "vite preview",
+    "audit": "tsx scripts/Audit.ts",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "electron:dev": "concurrently -k \"cross-env BROWSER=none npm run dev\" \"wait-on http://localhost:5173 && electron .\"",
+    "compile:electron": "esbuild electron/main.ts --bundle --platform=node --external:electron --outfile=electron/dist/main.cjs && esbuild electron/preload.ts --bundle --platform=node --external:electron --outfile=electron/dist/preload.cjs",
+    "electron:build": "npm run build:fast && npm run compile:electron && electron-builder",
+    "test:smoke": "vitest run tests/SmokeTest.spec.tsx"
+  },
+  "main": "electron/dist/main.cjs",
+  "build": {
+    "appId": "com.fin.system",
+    "productName": "FIN",
+    "mac": {
+      "category": "public.app-category.finance",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "arm64"
+          ]
+        }
+      ],
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "entitlements.mac.plist",
+      "entitlementsInherit": "helper.entitlements.mac.plist"
+    },
+    "directories": {
+      "buildResources": "assets"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/dist/**/*"
+    ]
+  },
+  "dependencies": {
+    "@react-three/drei": "^9.88.13",
+    "@react-three/fiber": "^8.15.11",
+    "@react-three/postprocessing": "^2.19.1",
+    "@tensorflow/tfjs": "^4.15.0",
+    "d3-delaunay": "^6.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "three": "^0.160.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.1",
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@types/three": "^0.160.0",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/ui": "^4.0.16",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "electron": "^28.1.0",
+    "electron-builder": "^24.9.1",
+    "esbuild": "^0.27.2",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "happy-dom": "^20.1.0",
+    "jsdom": "^27.4.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8",
+    "vite-plugin-pwa": "^0.17.4",
+    "vitest": "^4.0.16",
+    "wait-on": "^7.2.0"
+  }
+}

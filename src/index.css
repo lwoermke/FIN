@@ -1,0 +1,198 @@
+/**
+ * FIN Global Styles
+ * "Gravity Glass" Design System
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Typography */
+  --font-label: 'Noto Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  --tracking-tight: -0.03em;
+
+  /* LIVING VOID ATMOSPHERE */
+  --obsidian-void: #0b0b10;
+  --living-void-gradient: radial-gradient(circle at 50% 120%, #1a1a2e 0%, #0b0b10 50%, #050505 100%);
+
+  /* GRAVITY GLASS MATERIAL */
+  --electric-cyan: #00F3FF;
+  --glass-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-blur: 50px;
+  --glass-inner-glow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+  --glass-radius: 32px;
+
+  /* Spacing System */
+  --safe-area: 64px;
+  --container-padding: 48px;
+
+  /* Semantic Colors */
+  --color-bg: #050510;
+  --color-surface: rgba(10, 10, 20, 0.8);
+  --color-primary: #00AAFF;
+  /* Facts / Glass */
+  --color-secondary: #00FFC8;
+  /* Reality / Lattice */
+  --color-warning: #FFAA00;
+  /* Uncertainty */
+  --color-danger: #FF4444;
+  /* Risk / Stops */
+  --color-text: rgba(255, 255, 255, 0.9);
+  --color-text-dim: rgba(255, 255, 255, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: var(--living-void-gradient);
+  background-attachment: fixed;
+}
+
+body {
+  font-family: var(--font-label);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--color-text);
+}
+
+/* GRAVITY GLASS MATERIAL */
+.gravity-glass {
+  background: var(--glass-surface);
+  backdrop-filter: blur(var(--glass-blur)) saturate(120%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(120%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--glass-radius);
+  box-shadow: var(--glass-inner-glow);
+}
+
+/* Low Compute Fallback for Gravity Glass */
+body.low-compute .gravity-glass {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background: rgba(15, 15, 25, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Typography Utilities */
+.heading-uppercase {
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-tight);
+  font-weight: 600;
+}
+
+/* Safe Area Container */
+.safe-area-container {
+  padding: var(--safe-area);
+}
+
+.container-padded {
+  padding: var(--container-padding);
+}
+
+/* Scrollbar hiding for immersive feel */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* Utility classes */
+.font-data {
+  font-family: var(--font-data);
+}
+
+.glass-panel {
+  background: rgba(10, 10, 20, 0.6);
+  backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Low Compute Fallback */
+body.low-compute .glass-panel {
+  backdrop-filter: none !important;
+  background: rgba(10, 10, 20, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.text-xs {
+  font-size: 0.75rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.text-base {
+  font-size: 1rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.tracking-wide {
+  letter-spacing: 0.1em;
+}
+
+/* Animation utilities */
+@keyframes pulse-glow {
+  0% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.6;
+  }
+}
+
+.animate-pulse {
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+
+@keyframes voltage-drop {
+  0% {
+    border-color: var(--color-danger);
+    box-shadow: 0 0 10px var(--color-danger);
+    opacity: 1;
+  }
+
+  10% {
+    opacity: 0.5;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  30% {
+    opacity: 0.8;
+  }
+
+  40% {
+    border-color: rgba(255, 68, 68, 0.3);
+    box-shadow: none;
+  }
+
+  100% {
+    border-color: var(--color-danger);
+    opacity: 1;
+  }
+}
+
+.animate-voltage-drop {
+  animation: voltage-drop 0.4s ease-out;
+}

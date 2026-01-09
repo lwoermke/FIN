@@ -1,0 +1,19 @@
+# FIN: PROJECT RULES & PHILOSOPHY
+
+## 1. CORE MANIFESTO
+- **Identity:** FIN is not software; it is a physical instrument. Information has mass (gravity), entropy, and resonance.
+- **Zero-Trust:** Local-First only. No external cloud dependencies for state. 
+- **The Vektor:** Data is never a primitive. It is always a `Traceable<T>` object { val, src, time, regime, conf }.
+- **Visuals:** - Isometric = The Fabric (Physical, Stochastic, R3F).
+  - Orthographic = Gravity Glass (Deterministic, Facts, DOM).
+
+## 2. TECH STACK & PATTERNS
+- **Stack:** React, TypeScript (Strict), Three.js (R3F), WebGPU (Shaders), TensorFlow.js, WebWorkers.
+- **Shaders:** Use raw GLSL for `lattice_vertex` and `tensor_void`.
+- **State:** No Redux. Use a custom Registry Pattern (`Store.ts`) with Merkle-hashing.
+- **Async:** Use WebWorkers for heavy math (Physics, Merkle Hashing).
+
+## 3. CODING STANDARDS
+- **Files:** Strict adherence to `FIN_ ARCHITECTURAL DIRECTORY STRUCTURE.md`.
+- **Typing:** No `any`. All data points must be wrapped in `Vektor<T>`.
+- **Security:** Sharded Secure Recovery (SSS) logic must replace standard auth.
